@@ -187,9 +187,9 @@
       
         
         <li class="menu-item menu-item-about">
-          <a href="/about" rel="section">
+          <a href="/about/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
             
             关于
           </a>
@@ -197,9 +197,9 @@
       
         
         <li class="menu-item menu-item-tags">
-          <a href="/tags" rel="section">
+          <a href="/tags/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
             标签
           </a>
@@ -207,9 +207,9 @@
       
         
         <li class="menu-item menu-item-categories">
-          <a href="/categories" rel="section">
+          <a href="/categories/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
             
             分类
           </a>
@@ -217,9 +217,9 @@
       
         
         <li class="menu-item menu-item-archives">
-          <a href="/archives" rel="section">
+          <a href="/archives/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             归档
           </a>
@@ -341,6 +341,37 @@
           
 
           
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  
+                </span>
+              
+            </div>
+          
 
           
 
@@ -359,90 +390,16 @@
       
         
           
-            <p>文档内容主要来自阿里巴巴Android开发手册</p>
-<p>##1. 编码规范</p>
-<p>###1.1 命名规范<br>1.【强制】类名必须遵循驼峰形式，职责明确的类需要用规范性后缀。例：XxxActivity , XxxService , AbstractXxx,BaseXxx。<br>2.【强制】普通成员变量m开头，静态变量为s开头，常量全部大写，同时命名要能体现含义；<br>AS设置：Settings -&gt; Editor -&gt; Code Style -&gt; Code Generation 可以设置命名规则<br>正例：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">private final Context mContext;</span><br><span class="line">private static CrashHandler sCrashHandler = new CrashHandler();</span><br><span class="line">public static final String MODULE_DES_DB_NAME = &quot;module_des.db&quot;;</span><br></pre></td></tr></table></figure>
-
-<p>反例：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@OnClick(&#123;R.id.user_menu_btn1, R.id.user_menu_btn2, R.id.user_menu_btn3, R.id.logout_btn&#125;)</span><br></pre></td></tr></table></figure>
-
-<p>3.【强制】方法名、参数名、局部变量都统一使用 lowerCamelCase 风格，必须遵从 驼峰形式，同时命名要能体现含义</p>
-<p>4.【强制】组件和View的布局文件需要明确命名前后缀。例：perfix_module_des.xml:<br>| Prefix    | Usage           | Demo  |<br>| ——— |:————-:| —–:|<br>| activity  | Activity 使用     | activity_main.xml |<br>| fragment  | Fragment 使用     |  fragment_plant_detail.xml |<br>| item      | List/recycler/Gridview 使用  |   item_open_source_view.xml |<br>| dialog    | Dialog 使用     | dialog_download_select.xml    |<br>| include   | Include 复用布局      |  include_xxx.xml |<br>| xxx       | 其他自定义          |    layout_xxx.xml 、 xxx_moudel_des.xml |</p>
-<p>###1.2 格式规范<br>1.【强制】采用4个空格缩进，禁止使用tab字符。 每行代码尽量控制在100字符左右（Google 100字  Alibaba 120字），超过则换行<br>说明：<br>AS设置：Code Style – Java &gt; 取消勾选Use tab character。<br>2.【强制】运算符左右必须有一个空格。方法参数在定义和传入时，多个参数逗号后边必须加空格。<br>例： </p>
-<pre><code>int a = 3;  
-method(&quot;a&quot;, &quot;b&quot;, &quot;c&quot;); </code></pre><p>3.【强制】所有源文件必须使用utf-8格式。<br>4.【强制】Android Studio提交前需要格式化源文件（默认的Reformat Code：Ctrl+Alt+L）。</p>
-<p>##2. 开发规范<br>1.【强制】public的方法和接口必须有注释。<br>2.【强制】 类、类属性、类方法的注释必须使用 Javadoc 规范，使用/<em>*内容</em>/格式。<br>3.【强制】所有的类都必须添加创建者和创建日期。<br>4.【强制】Android Logcat 使用规范：<br>禁止直接使用android.util.Log，必须使用统一工具类。<br>工具类中可以控制Release包不输出Log，提高性能，也避免发生安全问题。<br>合理使用logcat的等级，不要滥用error级别；<br>提交代码前，去掉不必要的调试阶段的日志。<br>5.【强制】可检测性异常和运行时异常都需要捕捉，禁止整个一大段代码外部统一try catch。<br>6.【强制】catch住的异常需要明确的log打印出它的异常信息，方便追溯问题。<br>7.【强制】谨慎注释掉代码。在上方详细说明，而不是简单地注释掉。如果无用，则删除。<br> 说明：代码被注释掉有两种可能性：<br> （1）后续会恢复此段代码逻辑。（2）永久不用。<br> 前者如果没有备注信息，难以知晓注释动机。后者建议直接删掉（代码仓库已然保存了历史代码）</p>
-<p>##3 Android 基本组件的使用<br>1.【强制】Activity间通过隐式Intent的跳转，在发出Intent之前必须通过resolveActivity 检查，避免找不到合适的调用组件，造成 ActivityNotFoundException 的异常。 </p>
-<pre><code>public void viewUrl(String url, String mimeType) {
-       Intent intent = new Intent(Intent.ACTION_VIEW);
-       intent.setDataAndType(Uri.parse(url), mimeType);
-       if (getPackageManager().resolveActivity(intent, PackageManager.MATCH_DEFAULT_ONLY) != null) {
-           try {
-               startActivity(intent);
-           } catch (ActivityNotFoundException e) {
-               if (BuildConfig.IS_SHOW_LOG) {
-                   LogUtils.e(TAG, &quot;activity not found for &quot; + mimeType + &quot; over &quot; + Uri.parse(url).getScheme(), e);
-               }
-           }
-       }
-   }</code></pre><p>2.【强制】避免在 Service#onStartCommand()/onBind()方法中执行耗时操作，如果确 实有需求，应改用 IntentService 或采用其他异步机制完成。<br>3.【强制】避免在 BroadcastReceiver#onReceive()中执行耗时操作，如果有耗时工作， 应该创建 IntentService 完成，而不应该在 BroadcastReceiver 内创建子线程去做<br>4.【强制】避免使用隐式 Intent 广播敏感信息，信息可能被其他注册了对应 BroadcastReceiver 的 App 接收。<br>5.【强制】不要在 Android 的 Application 对象中缓存数据。基础组件之间的数据共享 请使用 Intent 等机制，也可使用 SharedPreferences 等数据持久化机制。<br>6.【强制】Activity或者Fragment中动态注册BroadCastReceiver时，registerReceiver() 和 unregisterReceiver()要成对出现。<br>7.【强制】不能使用 ScrollView 包裹 ListView/GridView/ExpandableListView;因为这 样会把 ListView 的所有 Item 都加载到内存中，要消耗巨大的内存和 cpu 去绘制图 面。目前为了较好的 UI 体验，更贴 近 Material Design 的设计，推荐使用 NestedScrollView：<br>正例：</p>
-<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt; 
-&lt;LinearLayout&gt; 
-    &lt;android.support.v4.widget.NestedScrollView&gt; 
-        &lt;LinearLayout&gt; 
-            &lt;ImageView/&gt; 
-            ... 
-            &lt;android.support.v7.widget.RecyclerView/&gt; 
-        &lt;/LinearLayout&gt; 
-    &lt;/android.support.v4.widget.NestedScrollView&gt; 
-&lt;/LinearLayout&gt;</code></pre><p>反例：</p>
-<pre><code>&lt;ScrollView&gt; 
-    &lt;LinearLayout&gt; 
-        &lt;TextView/&gt; 
-        ... 
-        &lt;ListView/&gt; 
-        &lt;TextView /&gt; 
-    &lt;/LinearLayout&gt; 
-&lt;/ScrollView&gt;</code></pre><p>##4. 进程线程与消息通信<br>1.【强制】不要通过 Intent 在 Android 基础组件之间传递大数据（binder transaction 缓存为 1MB），可能导致 OOM。<br>2.【强制】 在 Application 的业务初始化代码加入进程判断，确保只在自己需要的进程 初始化。特别是后台进程减少不必要的业务初始化。</p>
-<pre><code>// 获取当前包名
-String packageName = context.getPackageName();
-// 获取当前进程名
-String processName = SystemUtils.getProcessName(android.os.Process.myPid());
-
-/**
- * 获取进程号对应的进程名
- *
- * @param pid 进程号
- * @return 进程名
- */
-public static String getProcessName(int pid) {
-    BufferedReader reader = null;
-    try {
-        reader = new BufferedReader(new FileReader(&quot;/proc/&quot; + pid + &quot;/cmdline&quot;));
-        String processName = reader.readLine();
-        if (!TextUtils.isEmpty(processName)) {
-            processName = processName.trim();
-        }
-        return processName;
-    } catch (Throwable throwable) {
-        throwable.printStackTrace();
-    } finally {
-        try {
-            if (reader != null) {
-                reader.close();
-            }
-        } catch (IOException exception) {
-            exception.printStackTrace();
-        }
-    }
-    return null;
-}</code></pre><p>3.【强制】禁止在多进程之间用 SharedPreferences 共享数据，虽然可以 (MODE_MULTI_PROCESS)，但官方已不推荐。<br>4.【强制】Receiver/Provider 不能在毫无权限控制的情况下，将 android:export 设置 为 true。</p>
-<p>###5 性能规范<br>1.【强制】不允许overdraw，合理使用background。<br>2.【强制】合理的减少布局层次，不允许超过4层以上的层次。<br>3.【强制】集成leakcanary来检测内存泄漏。<br>4.【强制】严禁在主线程做耗时操作。<br>5.【推荐】线程资源必须通过线程池提供，不允许在应用中自行显式创建线程。</p>
-<p>###6 体积优化<br>1、【推荐】如果没有明确要求，X86只允许本地调试使用，release不应包含。同时release版可只配置一种。参考：腾讯系app基本只保留armeabi  阿里系保留的是armeabi-v7a<br>2、【推荐】使用lint检查，移除无用资源</p>
-<p>###7 第三方开源库引入规范<br>  慎重合理的引入三方库，以下场景禁止引入三方库：<br>  版权不是对商业开源的三方库不允许引入；<br>  严禁小需求引入大的库；<br>  三方库不是主流且维护不稳定的不允许引入。</p>
-
-          
+          文档内容主要来自阿里巴巴Android开发手册
+1. 编码规范1.1 命名规范1.【强制】类名必须遵循驼峰形式，职责明确的类需要用规范性后缀。例：XxxActivity , XxxService , AbstractXxx,BaseXxx。2.【强制】普通成员变量m开头，静态变量为s开头，常量全部大
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/07/22/Android-编码规范/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -562,6 +519,37 @@ public static String getProcessName(int pid) {
           
 
           
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  
+                </span>
+              
+            </div>
+          
 
           
 
@@ -580,21 +568,15 @@ public static String getProcessName(int pid) {
       
         
           
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-          
+          Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in 
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2015/12/22/hello-world/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -674,7 +656,7 @@ public static String getProcessName(int pid) {
             
               <div class="site-state-item site-state-posts">
               
-                <a href="/archives">
+                <a href="/archives/">
               
                   <span class="site-state-item-count">2</span>
                   <span class="site-state-item-name">日志</span>
@@ -732,6 +714,15 @@ public static String getProcessName(int pid) {
   </span>
   <span class="author" itemprop="copyrightHolder">Simon</span>
 
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count"></span>
   
 </div>
 
