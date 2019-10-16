@@ -68,6 +68,7 @@
 
 
 
+  <meta name="keywords" content="gerrit,">
 
 
 
@@ -77,14 +78,33 @@
 
 
 
-<meta name="keywords" content="Android、Java">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Simon&#39;s Blog">
-<meta property="og:url" content="http://simonren.com/index.html">
+
+<meta name="description" content="Gerrit权限管控Gerrit项目权限介绍 在gerrit中添加了以下用户：   gerrit 用户： 服务管理员用户manager 用户： 项目管理员jenkin 用户： Verifier用户 对代码进行校验  通常由jenkins自动化使用 也可以配置相应人员使用reviewer 用户：项目代码reviewer 人员，可以 +2 -2simon 用户： 项目开发人员    在gerrit中创">
+<meta name="keywords" content="gerrit">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Gerrit权限管控">
+<meta property="og:url" content="http://simonren.com/2019/10/11/Gerrit权限管控/index.html">
 <meta property="og:site_name" content="Simon&#39;s Blog">
+<meta property="og:description" content="Gerrit权限管控Gerrit项目权限介绍 在gerrit中添加了以下用户：   gerrit 用户： 服务管理员用户manager 用户： 项目管理员jenkin 用户： Verifier用户 对代码进行校验  通常由jenkins自动化使用 也可以配置相应人员使用reviewer 用户：项目代码reviewer 人员，可以 +2 -2simon 用户： 项目开发人员    在gerrit中创">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://simonren.com/2019/10/11/Gerrit权限管控/picture/members.PNG">
+<meta property="og:image" content="http://simonren.com/2019/10/11/Gerrit权限管控/picture/gerritGroupList.PNG">
+<meta property="og:image" content="http://simonren.com/2019/10/11/Gerrit权限管控/picture/gerritProject.PNG">
+<meta property="og:image" content="http://simonren.com/2019/10/11/Gerrit权限管控/picture/ProjectRefencePermission.PNG">
+<meta property="og:image" content="http://simonren.com/2019/10/11/Gerrit权限管控/picture/gerrit_project.png">
+<meta property="og:image" content="http://simonren.com/2019/10/11/Gerrit权限管控/picture/gerrit_group.png">
+<meta property="og:image" content="http://simonren.com/2019/10/11/Gerrit权限管控/picture/peojectManager.PNG">
+<meta property="og:image" content="http://simonren.com/2019/10/11/Gerrit权限管控/picture/peojectReviewer.PNG">
+<meta property="og:image" content="http://simonren.com/2019/10/11/Gerrit权限管控/picture/peojectVerifier.PNG">
+<meta property="og:image" content="http://simonren.com/2019/10/11/Gerrit权限管控/picture/peojectDevelopers.PNG">
+<meta property="og:image" content="http://simonren.com/2019/10/11/Gerrit权限管控/picture/devops_project_access.PNG">
+<meta property="og:image" content="http://simonren.com/2019/10/11/Gerrit权限管控/picture/gerrit_group_compare.PNG">
+<meta property="og:image" content="http://simonren.com/2019/10/11/Gerrit权限管控/picture/gerrit_project_compare.PNG">
+<meta property="og:updated_time" content="2019-10-11T10:09:25.176Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Simon&#39;s Blog">
+<meta name="twitter:title" content="Gerrit权限管控">
+<meta name="twitter:description" content="Gerrit权限管控Gerrit项目权限介绍 在gerrit中添加了以下用户：   gerrit 用户： 服务管理员用户manager 用户： 项目管理员jenkin 用户： Verifier用户 对代码进行校验  通常由jenkins自动化使用 也可以配置相应人员使用reviewer 用户：项目代码reviewer 人员，可以 +2 -2simon 用户： 项目开发人员    在gerrit中创">
+<meta name="twitter:image" content="http://simonren.com/2019/10/11/Gerrit权限管控/picture/members.PNG">
 
 
 
@@ -114,13 +134,13 @@
 
 
 
-  <link rel="canonical" href="http://simonren.com/">
+  <link rel="canonical" href="http://simonren.com/2019/10/11/Gerrit权限管控/">
 
 
 
 
 
-  <title>Simon's Blog</title>
+  <title>Gerrit权限管控 | Simon's Blog</title>
   
 
 
@@ -139,8 +159,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -253,9 +272,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -285,9 +304,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/10/11/Gerrit权限管控/" itemprop="url">Gerrit权限管控</a></h1>
+          <h1 class="post-title" itemprop="name headline">Gerrit权限管控</h1>
         
 
         <div class="post-meta">
@@ -388,22 +405,53 @@
       
 
       
-        
-          
-          Gerrit权限管控Gerrit项目权限介绍
-在gerrit中添加了以下用户：
+        <h2 id="Gerrit权限管控"><a href="#Gerrit权限管控" class="headerlink" title="Gerrit权限管控"></a>Gerrit权限管控</h2><h3 id="Gerrit项目权限介绍"><a href="#Gerrit项目权限介绍" class="headerlink" title="Gerrit项目权限介绍"></a>Gerrit项目权限介绍</h3><ol>
+<li>在gerrit中添加了以下用户：</li>
+</ol>
+<p><img src="picture/members.PNG" alt></p>
+<p>gerrit 用户： 服务管理员用户<br>manager 用户： 项目管理员<br>jenkin 用户： Verifier用户 对代码进行校验  通常由jenkins自动化使用 也可以配置相应人员使用<br>reviewer 用户：项目代码reviewer 人员，可以 +2 -2<br>simon 用户： 项目开发人员  </p>
+<ol start="2">
+<li>在gerrit中创建用户组  </li>
+</ol>
+<p><img src="picture/gerritGroupList.PNG" alt></p>
+<p>DevopsDevelops ： devops项目开发人员，用户组成员simon<br>DevopsManager : devops项目管理员人员，用户组成员manager<br>DevopsReviewer： devops项目代码reviewer人员，用户组成员reviewer<br>DevopsVerifier： devops项目代码verifier人员，用户组人员jenkins</p>
+<p>Non-Interactive Users： 非交互人员组，主要用户jenkins自动化<br>Manager: 总管理员组，不局限与某一个project<br>Testers：测试人员组</p>
+<p>所有用户组创建默认包含gerrit管理员。</p>
+<ol start="3">
+<li>在gerrit中创建项目</li>
+</ol>
+<p><img src="picture/gerritProject.PNG" alt></p>
+<p>创建项目devops 项目 与 frontend项目 前端项目模板；<br>我们会看到新建项目会默认继承All-Projects的权限，修改权限的时候慎重，不要直接修改All-Projects组的权限，因为这个是所有项目的依赖权限组，修改了以后，所有的项目权限都会跟着发生变化。</p>
+<p>每个project可以添加自己的Reference,每个Reference可以配置自己的permission；</p>
+<p><img src="picture/ProjectRefencePermission.PNG" alt></p>
+<ol start="4">
+<li>项目权限</li>
+</ol>
+<p>1、Reference: refs/*<br>主要配置读取权限  Read  </p>
+<p>2、Reference: refs/for/*  拥有添加Patch的权限。<br>主要配置patch权限 Add Patch Set  </p>
+<p>3、Reference: refs/for/refs/*   拥有Push和Push Merge Commit权限。<br>主要配置Push 和 Push Merge Commit 权限  </p>
+<p>4、Reference: refs/heads/*   重点配置项 它是git存储库的所有分支<br>主要配置Push、Review、Verified、Submit 、Edit Topic Name permission等  </p>
+<p>5、Reference:refs/tags/*    可以执行所有的标记功能。<br>Reference:refs/meta/config    管理元数据的，系统配置相关权限，也可以让别人自定义规则。  </p>
+<h3 id="Gerrit项目管控"><a href="#Gerrit项目管控" class="headerlink" title="Gerrit项目管控"></a>Gerrit项目管控</h3><ol>
+<li>修改All-Projects  refs/*  read 选项权限,禁止注册用户和匿名用户，这样普通用户就看不到所有project了</li>
+<li>对特定project 允许特定groups查看和提交代码</li>
+<li>安装gitweb后，需要普通用户查看gitweb页面的，需要开启refs/meta/config  read权限即可，默认只有管理员有权限查看</li>
+</ol>
+<p>项目创建模式可以参考Project图：</p>
+<p><img src="picture/gerrit_project.png" alt></p>
+<p>权限功能类似与子类继承父类，公共配置可以抽取到模板中进行配置，差异性在各自的ACL（Access Control List）单独配置。</p>
+<p>用户组创建模式参考Group图：</p>
+<p><img src="picture/gerrit_group.png" alt></p>
+<p>Administrators 与 projectManager之间创建一个总管理员组（manager），权限介于Administrators与ProjectManager之间。然后Group主要配置如下</p>
+<p>1、每个项目的projectManager组 需要 Included manager组；<br><img src="picture/peojectManager.PNG" alt></p>
+<p>2、每个项目的projectReviewer组 需要 Included projectManager组；<br><img src="picture/peojectReviewer.PNG" alt></p>
+<p>3、每个项目的projectVerifier组 也需要 Included projectManager组；<br><img src="picture/peojectVerifier.PNG" alt></p>
+<p>4、每个项目的projectDevelops组 需要 Included 以上所有组；<br><img src="picture/peojectDevelopers.PNG" alt></p>
+<p>5、project权限配置，截图演示是继承All-Projects，实际项目创建需先建立模板然后继承配置；切记不要大肆修改All-Projects权限，这个是会影响所有项目。</p>
+<p><img src="picture/devops_project_access.PNG" alt></p>
+<p>###最后对比效果如下：<br>成员访问权限：<br><img src="picture/gerrit_group_compare.PNG" alt></p>
+<p>Project访问权限：<br><img src="picture/gerrit_project_compare.PNG" alt></p>
 
-
-gerrit 用户： 服务管理员用户manager 用户： 项目管理员jenkin 用户： Verifier用户 对代码进行校验  通常由jenkins自动化使用 也可以配置相应人员使用reviewer 用户：项目代
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/10/11/Gerrit权限管控/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
       
     </div>
     
@@ -418,191 +466,36 @@ gerrit 用户： 服务管理员用户manager 用户： 项目管理员jenkin �
 
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-gerrit" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://simonren.com/2019/10/10/Gerrit安装与配置/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Simon">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Simon's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/10/10/Gerrit安装与配置/" itemprop="url">Gerrit安装与配置</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-10T00:00:00+08:00">
-                2019-10-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
+        <div class="post-tags">
           
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/CI/" itemprop="url" rel="index">
-                    <span itemprop="name">CI</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
+            <a href="/tags/gerrit/" rel="tag"># gerrit</a>
           
-
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  2k
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  10 分钟
-                </span>
-              
-            </div>
-          
-
-          
-
         </div>
-      </header>
-    
+      
 
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
+      
       
       
 
       
-        
-          
-          Gerrit安装与配置一、简介Gerrit是一款被Android开源项目广泛采用的code review(代码审核)系统。普通用户将gerrit里的项目clone到本地，修改代码后，虽不能直接push到代码中心 ，但是可以通过git review提交到gerrit上进行审核。gerrit会通知项目的
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/10/10/Gerrit安装与配置/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/10/10/Gerrit安装与配置/" rel="next" title="Gerrit安装与配置">
+                <i class="fa fa-chevron-left"></i> Gerrit安装与配置
+              </a>
+            
           </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
 
-    
+          <span class="post-nav-divider"></span>
 
-    
-
-    
-
-    <footer class="post-footer">
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
       
 
       
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -612,10 +505,11 @@ gerrit 用户： 服务管理员用户manager 用户： 项目管理员jenkin �
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -643,8 +537,17 @@ gerrit 用户： 服务管理员用户manager 用户： 项目管理员jenkin �
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -706,6 +609,22 @@ gerrit 用户： 服务管理员用户manager 用户： 项目管理员jenkin �
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Gerrit权限管控"><span class="nav-number">1.</span> <span class="nav-text">Gerrit权限管控</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Gerrit项目权限介绍"><span class="nav-number">1.1.</span> <span class="nav-text">Gerrit项目权限介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Gerrit项目管控"><span class="nav-number">1.2.</span> <span class="nav-text">Gerrit项目管控</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -855,6 +774,10 @@ gerrit 用户： 服务管理员用户manager 用户： 项目管理员jenkin �
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
