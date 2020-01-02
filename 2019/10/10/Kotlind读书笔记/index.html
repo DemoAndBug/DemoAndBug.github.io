@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="kotlin,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Kotlin基础语法1.不一样的类型声明在Java中，我们会把类型名称放在前面，如下声明一个变量。 1String java = &amp;quot;I am Java&amp;quot;;  Kotlin则采用不同的做法，与Java相反类型名放在变量名的后面 1val kotlin:String = &amp;quot;I am Kotlin&amp;quot;  为什么采用这样的声明? Kotling官方FAQ的回答：这样可">
+<meta name="keywords" content="kotlin">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Kotlin读书笔记-基础语法">
+<meta property="og:url" content="http://simonren.com/2019/10/10/Kotlind读书笔记/index.html">
+<meta property="og:site_name" content="Simon&#39;s Blog">
+<meta property="og:description" content="Kotlin基础语法1.不一样的类型声明在Java中，我们会把类型名称放在前面，如下声明一个变量。 1String java = &amp;quot;I am Java&amp;quot;;  Kotlin则采用不同的做法，与Java相反类型名放在变量名的后面 1val kotlin:String = &amp;quot;I am Kotlin&amp;quot;  为什么采用这样的声明? Kotling官方FAQ的回答：这样可">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-01-02T03:06:29.839Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Kotlin读书笔记-基础语法">
+<meta name="twitter:description" content="Kotlin基础语法1.不一样的类型声明在Java中，我们会把类型名称放在前面，如下声明一个变量。 1String java = &amp;quot;I am Java&amp;quot;;  Kotlin则采用不同的做法，与Java相反类型名放在变量名的后面 1val kotlin:String = &amp;quot;I am Kotlin&amp;quot;  为什么采用这样的声明? Kotling官方FAQ的回答：这样可">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://simonren.com/2019/10/10/Kotlind读书笔记/">
+
+
+
+
+
+  <title>Kotlin读书笔记-基础语法 | Simon's Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Simon's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">不忘初心、方得始终</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-kotlin" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://simonren.com/2019/10/10/Kotlind读书笔记/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Simon">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Simon's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Kotlin读书笔记-基础语法</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-10T00:00:00+08:00">
+                2019-10-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/kotlin/" itemprop="url" rel="index">
+                    <span itemprop="name">kotlin</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.4k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  5 分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Kotlin基础语法"><a href="#Kotlin基础语法" class="headerlink" title="Kotlin基础语法"></a>Kotlin基础语法</h1><h2 id="1-不一样的类型声明"><a href="#1-不一样的类型声明" class="headerlink" title="1.不一样的类型声明"></a>1.不一样的类型声明</h2><p>在Java中，我们会把类型名称放在前面，如下声明一个变量。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String java = &quot;I am Java&quot;;</span><br></pre></td></tr></table></figure>
+
+<p>Kotlin则采用不同的做法，与Java相反类型名放在变量名的后面</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">val kotlin:String = &quot;I am Kotlin&quot;</span><br></pre></td></tr></table></figure>
+
+<p>为什么采用这样的声明? Kotling官方FAQ的回答：<br>这样可以是代码的可读性更好，同时也有利于使用一些良好的语法特性，比如省略类型声明</p>
+<h2 id="2-增强的类型推导"><a href="#2-增强的类型推导" class="headerlink" title="2.增强的类型推导"></a>2.增强的类型推导</h2><p>类型推导是Kotlin在Java基础上增强的语言特性之一。通俗的理解，编译器可以在不显示声明类型的情况下，自动推导出它所需要的类型。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">fun main() &#123;</span><br><span class="line">    val string = &quot;I am Kotlin&quot;</span><br><span class="line">    val int = 1234</span><br><span class="line">    val long = 1234L</span><br><span class="line">    val float = 1234f</span><br><span class="line">    val double = 12.34</span><br><span class="line">    val double2 = 10.1e6</span><br><span class="line"></span><br><span class="line">    printlnClassName(string)</span><br><span class="line">    printlnClassName(int)</span><br><span class="line">    printlnClassName(long)</span><br><span class="line">    printlnClassName(float)</span><br><span class="line">    printlnClassName(double)</span><br><span class="line">    printlnClassName(double2)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">fun printlnClassName(msg: Any) &#123;</span><br><span class="line">    println(msg.javaClass.name)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">输出结果去下：</span><br><span class="line"></span><br><span class="line">java.lang.String</span><br><span class="line">java.lang.Integer</span><br><span class="line">java.lang.Long</span><br><span class="line">java.lang.Float</span><br><span class="line">java.lang.Double</span><br><span class="line">java.lang.Double</span><br></pre></td></tr></table></figure>
+
+<p>类型推导在很大程度上提高了Kotlin这种静态语言的开发效率</p>
+<h2 id="3-声明函数的返回值类型"><a href="#3-声明函数的返回值类型" class="headerlink" title="3.声明函数的返回值类型"></a>3.声明函数的返回值类型</h2><p>虽然Kotlin很大程度上支持了类型推导，并不意味着我们可以不声明函数返回值类型，如下定义一个函数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">fun sum(x: Int, y: Int): Int &#123;</span><br><span class="line">    return x + y</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">与声明变量一样，类型信息放在函数名的后面，如果把声明去掉：</span><br><span class="line"></span><br><span class="line">fun sumOther(x:Int,y: Int)&#123;return x+y&#125;</span><br><span class="line"></span><br><span class="line">IDEA会直接提示返回类型与需求类型不一致 函数需要返回Unit类型，而实际返回Int类型。</span><br></pre></td></tr></table></figure>
+
+<p>总结：<br>如果他是函数的参数，必须声明类型<br>如果它是非表达式定义的函数，除了Unit 也必须声明<br>如果是递归使用，必须声明类型<br>如果是公共方法的返回值，建议使用，为了提供更好的代码可读性。</p>
+<h2 id="4-val与var的使用规则"><a href="#4-val与var的使用规则" class="headerlink" title="4.val与var的使用规则"></a>4.val与var的使用规则</h2><p>与Java另一点不同在于，Kotlin声明变量时，引入了val和var的概念。var很容易理解，JavaScript等其他语言也通过该关键字来声明变量，它对应的就是Java中的变量。</p>
+<p>如果说var代表了varible（变量），那么val可看成value（值）的缩写。但也有人觉得这样并不直观或准确，而是把val解释成varible+final，即通过val声明的变量具有Java中的final关键字的效果，也就是引用不可变。<br>注：我们可以在IntelliJ IDEA或Android Studio中查看val语法反编译后转化的Java代码，从中可以很清楚地发现它是用final实现这一特性的</p>
+<h3 id="4-1-val的含义引用不可变"><a href="#4-1-val的含义引用不可变" class="headerlink" title="4.1 val的含义引用不可变"></a>4.1 val的含义引用不可变</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">public fun main() &#123;</span><br><span class="line">    val arrayVal = intArrayOf(1,2,3)</span><br><span class="line">    //Val cannot be reassigned</span><br><span class="line">    //arrayVal = intArrayOf(2,3,4)</span><br><span class="line">    println(arrayVal)</span><br><span class="line">    println(arrayVal[0])</span><br><span class="line">    arrayVal[0] = 5</span><br><span class="line">    println(arrayVal)</span><br><span class="line">    println(arrayVal[0])</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">[I@7eda2dbb</span><br><span class="line">1</span><br><span class="line">[I@7eda2dbb</span><br><span class="line">5</span><br></pre></td></tr></table></figure>
+
+<p>通过输出引用不可变，所以arrayVal不能指向另一个数组，但我们可以修改数组里的值<br>因此，val声明的变量是只读变量，它的引用不可更改，但并不代表其引用对象也不可变。事实上，我们依然可以修改引用对象的可变成员。</p>
+<h3 id="4-2-优先使用val来避免副作用"><a href="#4-2-优先使用val来避免副作用" class="headerlink" title="4.2 优先使用val来避免副作用"></a>4.2 优先使用val来避免副作用</h3><p>在很多Kotlin的学习资料中，都会传递一个原则：优先使用val来声明变量。<br>简单来说，副作用就是修改了某处的某些东西，比方说：<br>❑ 修改了外部变量的值。<br>❑ IO操作，如写数据到磁盘。<br>❑ UI操作，如修改了一个按钮的可操作状态。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">public fun main() &#123;</span><br><span class="line">    count(1)</span><br><span class="line">    count(1)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var  a = 1</span><br><span class="line">public fun count(i :Int)&#123;</span><br><span class="line">    a= a+1</span><br><span class="line">    println(i+a)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&gt;&gt;</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td></tr></table></figure>
+
+<p>在以上代码中，我们会发现多次调用count(1)得到的结果并不相同，显然这是受到了外部变量a的影响，这个就是典型的副作用。如果我们把var换成val，然后再执行类似的操作，编译就会报错。这就有效避免了之前的情况</p>
+<p>当然，这并不意味着用val声明变量后就不能再对该变量进行赋值，事实上，Kotlin也支持我们在一开始不定义val变量的取值，随后再进行赋值。然而，因为引用不可变，val声明的变量只能被赋值一次，且在声明时不能省略变量类型.</p>
+<h3 id="4-3-var的适用范围"><a href="#4-3-var的适用范围" class="headerlink" title="4.3 var的适用范围"></a>4.3 var的适用范围</h3><p>一个可能被提及的问题是：既然val这么好，那么为什么Kotlin还要保留var呢？<br>一个可能被提及的问题是：既然val这么好，那么为什么Kotlin还要保留var呢？事实上，从Kotlin诞生的那一刻就决定了必须拥抱var，因为它兼容Java。除此之外，在某些场景使用var确实会起到不错的效果。举个例子，假设我们现在有一个整数列表，然后遍历元素操作后获得计算结果，如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">fun callVar(list: List&lt;Int&gt;): Int &#123;  //5,2,3      5,10,12,36,39</span><br><span class="line">    var res = 0;</span><br><span class="line">    for (a in list) &#123;</span><br><span class="line">        res *= a</span><br><span class="line">        res += a</span><br><span class="line">    &#125;</span><br><span class="line">    return res</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这是我们非常熟悉的做法，以上代码中的res是个局部的可变变量，它与外界没有任何交互，非常安全可控。<br>我们再来尝试用val实现：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">fun callVal(list: List&lt;Int&gt;): Int &#123;</span><br><span class="line">    fun recurse(list: List&lt;Int&gt;, res: Int): Int &#123;</span><br><span class="line">        return if (list.isNotEmpty()) &#123;</span><br><span class="line">            val a = list.first();</span><br><span class="line">            recurse(list.drop(1), res * a + a)</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            res</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return recurse(list, 0)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这就有点尴尬了，必须利用递归才能实现，原本非常简单的逻辑现在变得非常不直观。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/kotlin/" rel="tag"># kotlin</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/10/10/Gerrit安装与配置/" rel="prev" title="Gerrit安装与配置">
+                Gerrit安装与配置 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="Simon">
+            
+              <p class="site-author-name" itemprop="name">Simon</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">分类</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Kotlin基础语法"><span class="nav-number">1.</span> <span class="nav-text">Kotlin基础语法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-不一样的类型声明"><span class="nav-number">1.1.</span> <span class="nav-text">1.不一样的类型声明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-增强的类型推导"><span class="nav-number">1.2.</span> <span class="nav-text">2.增强的类型推导</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-声明函数的返回值类型"><span class="nav-number">1.3.</span> <span class="nav-text">3.声明函数的返回值类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-val与var的使用规则"><span class="nav-number">1.4.</span> <span class="nav-text">4.val与var的使用规则</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-val的含义引用不可变"><span class="nav-number">1.4.1.</span> <span class="nav-text">4.1 val的含义引用不可变</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-优先使用val来避免副作用"><span class="nav-number">1.4.2.</span> <span class="nav-text">4.2 优先使用val来避免副作用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-var的适用范围"><span class="nav-number">1.4.3.</span> <span class="nav-text">4.3 var的适用范围</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Simon</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">4.2k</span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
