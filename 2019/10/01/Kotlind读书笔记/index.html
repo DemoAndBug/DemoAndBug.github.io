@@ -83,11 +83,11 @@
 <meta name="keywords" content="kotlin">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Kotlin读书笔记-基础语法">
-<meta property="og:url" content="http://simonren.com/2019/10/10/Kotlind读书笔记/index.html">
+<meta property="og:url" content="http://simonren.com/2019/10/01/Kotlind读书笔记/index.html">
 <meta property="og:site_name" content="Simon&#39;s Blog">
 <meta property="og:description" content="Kotlin基础语法1.不一样的类型声明在Java中，我们会把类型名称放在前面，如下声明一个变量。 1String java = &amp;quot;I am Java&amp;quot;;  Kotlin则采用不同的做法，与Java相反类型名放在变量名的后面 1val kotlin:String = &amp;quot;I am Kotlin&amp;quot;  为什么采用这样的声明? Kotling官方FAQ的回答：这样可">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-01-02T03:06:29.839Z">
+<meta property="og:updated_time" content="2020-02-20T05:46:05.766Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Kotlin读书笔记-基础语法">
 <meta name="twitter:description" content="Kotlin基础语法1.不一样的类型声明在Java中，我们会把类型名称放在前面，如下声明一个变量。 1String java = &amp;quot;I am Java&amp;quot;;  Kotlin则采用不同的做法，与Java相反类型名放在变量名的后面 1val kotlin:String = &amp;quot;I am Kotlin&amp;quot;  为什么采用这样的声明? Kotling官方FAQ的回答：这样可">
@@ -120,7 +120,7 @@
 
 
 
-  <link rel="canonical" href="http://simonren.com/2019/10/10/Kotlind读书笔记/">
+  <link rel="canonical" href="http://simonren.com/2019/10/01/Kotlind读书笔记/">
 
 
 
@@ -273,7 +273,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://simonren.com/2019/10/10/Kotlind读书笔记/">
+    <link itemprop="mainEntityOfPage" href="http://simonren.com/2019/10/01/Kotlind读书笔记/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Simon">
@@ -302,8 +302,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-10T00:00:00+08:00">
-                2019-10-10
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-01T00:00:00+08:00">
+                2019-10-01
               </time>
             
 
@@ -354,7 +354,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1.4k
+                  1.5k
                 </span>
               
 
@@ -370,7 +370,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  5 分钟
+                  6 分钟
                 </span>
               
             </div>
@@ -422,7 +422,9 @@
 <p>这是我们非常熟悉的做法，以上代码中的res是个局部的可变变量，它与外界没有任何交互，非常安全可控。<br>我们再来尝试用val实现：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">fun callVal(list: List&lt;Int&gt;): Int &#123;</span><br><span class="line">    fun recurse(list: List&lt;Int&gt;, res: Int): Int &#123;</span><br><span class="line">        return if (list.isNotEmpty()) &#123;</span><br><span class="line">            val a = list.first();</span><br><span class="line">            recurse(list.drop(1), res * a + a)</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            res</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return recurse(list, 0)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>这就有点尴尬了，必须利用递归才能实现，原本非常简单的逻辑现在变得非常不直观。</p>
+<p>这就必须利用递归才能实现，原本非常简单的逻辑现在变得非常不直观。<br>不过Kotlin List有个fold操作函数可以实现一个精简的操作：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * Accumulates value starting with [initial] value and applying [operation] from left to right to current accumulator value and each element.</span><br><span class="line"> */</span><br><span class="line">public inline fun &lt;T, R&gt; Iterable&lt;T&gt;.fold(initial: R, operation: (acc: R, T) -&gt; R): R &#123;</span><br><span class="line">    var accumulator = initial</span><br><span class="line">    for (element in this) accumulator = operation(accumulator, element)</span><br><span class="line">    return accumulator</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">fun call(list: List&lt;Int&gt;): Int &#123;</span><br><span class="line">    return list.fold(0) &#123; res, el -&gt;</span><br><span class="line">        res * el + el</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 
       
     </div>
@@ -449,22 +451,6 @@
       
       
 
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/10/10/Gerrit安装与配置/" rel="prev" title="Gerrit安装与配置">
-                Gerrit安装与配置 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
       
 
       
@@ -536,7 +522,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">1</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -625,7 +611,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">4.2k</span>
+    <span title="Site words total count">1.5k</span>
   
 </div>
 
