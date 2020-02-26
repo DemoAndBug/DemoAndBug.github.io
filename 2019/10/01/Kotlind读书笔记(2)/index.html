@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="kotlin,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Kotlin面向对象1.Kotlin中的类对象是由状态和行为组成的，我们可以根据他们描述一个事物。我们通过Kotlin 定义一个User类 12345678910111213141516171819class User &amp;#123;    var name: String = &amp;quot;simon&amp;quot;    var surname: String = &amp;quot;&amp;quot;">
+<meta name="keywords" content="kotlin">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Kotlin读书笔记-面向对象">
+<meta property="og:url" content="http://simonren.com/2019/10/01/Kotlind读书笔记(2)/index.html">
+<meta property="og:site_name" content="Simon&#39;s Blog">
+<meta property="og:description" content="Kotlin面向对象1.Kotlin中的类对象是由状态和行为组成的，我们可以根据他们描述一个事物。我们通过Kotlin 定义一个User类 12345678910111213141516171819class User &amp;#123;    var name: String = &amp;quot;simon&amp;quot;    var surname: String = &amp;quot;&amp;quot;">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-02-26T10:01:54.991Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Kotlin读书笔记-面向对象">
+<meta name="twitter:description" content="Kotlin面向对象1.Kotlin中的类对象是由状态和行为组成的，我们可以根据他们描述一个事物。我们通过Kotlin 定义一个User类 12345678910111213141516171819class User &amp;#123;    var name: String = &amp;quot;simon&amp;quot;    var surname: String = &amp;quot;&amp;quot;">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://simonren.com/2019/10/01/Kotlind读书笔记(2)/">
+
+
+
+
+
+  <title>Kotlin读书笔记-面向对象 | Simon's Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Simon's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">不忘初心、方得始终</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-kotlin" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://simonren.com/2019/10/01/Kotlind读书笔记(2)/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Simon">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Simon's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Kotlin读书笔记-面向对象</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-01T00:00:00+08:00">
+                2019-10-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/kotlin/" itemprop="url" rel="index">
+                    <span itemprop="name">kotlin</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  3.3k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  13 分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Kotlin面向对象"><a href="#Kotlin面向对象" class="headerlink" title="Kotlin面向对象"></a>Kotlin面向对象</h1><h2 id="1-Kotlin中的类"><a href="#1-Kotlin中的类" class="headerlink" title="1.Kotlin中的类"></a>1.Kotlin中的类</h2><p>对象是由状态和行为组成的，我们可以根据他们描述一个事物。<br>我们通过Kotlin 定义一个User类</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">class User &#123;</span><br><span class="line">    var name: String = &quot;simon&quot;</span><br><span class="line">    var surname: String = &quot;&quot;</span><br><span class="line">        get() = field.toUpperCase()</span><br><span class="line"></span><br><span class="line">    var isEmail: Boolean = false</span><br><span class="line"></span><br><span class="line">    var email: String = &quot;&quot;</span><br><span class="line">        set(value) &#123;</span><br><span class="line">            if (isEmailValid(value)) field = value</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    private fun isEmailValid(value: String): Boolean &#123;</span><br><span class="line">        return isEmail</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    //全局可见</span><br><span class="line">    fun eat() &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>我们可以使用熟悉的class 结构来声明一个类，我们将上述代码反编译成Java版本，然后分析差异。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">public final class User &#123;</span><br><span class="line">   @NotNull</span><br><span class="line">   private String name = &quot;simon&quot;;</span><br><span class="line">   private final int age = 1;</span><br><span class="line">   @NotNull</span><br><span class="line">   private String surname = &quot;&quot;;</span><br><span class="line">   private boolean isEmail;</span><br><span class="line">   @NotNull</span><br><span class="line">   private String email = &quot;&quot;;</span><br><span class="line"></span><br><span class="line">   @NotNull</span><br><span class="line">   public final String getName() &#123;</span><br><span class="line">      return this.name;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   public final void setName(@NotNull String var1) &#123;</span><br><span class="line">      Intrinsics.checkParameterIsNotNull(var1, &quot;&lt;set-?&gt;&quot;);</span><br><span class="line">      this.name = var1;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   public final int getAge() &#123;</span><br><span class="line">      return this.age;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   private final boolean isEmailValid(String value) &#123;</span><br><span class="line">      return this.isEmail;</span><br><span class="line">   &#125;</span><br><span class="line">   ......</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>可以看出，虽然Kotlin中类声明的语法非常近似Java，但也存在很多不同：  </p>
+<p>1）不可变属性成员。正如我们在第2章介绍过，Kotlin支持用val在类中声明引用不可变的属性成员，这是利用Java中的final修饰符来实现的，使用var声明的属性则反之引用可变。  </p>
+<p>2）属性默认值。因为Java的属性都有默认值，比如int类型的默认值为0，引用类型的默认值为null，所以在声明属性的时候我们不需要指定默认值。而在Kotlin中，除非显式地声明延迟初始化，不然就需要指定属性的默认值  </p>
+<p>3）不同的可访问修饰符。Kotlin类中的成员默认是全局可见，而Java的默认可见域是包作用域，因此在Java版本中，我们必须采用public修饰才能达相同的效果  </p>
+<h2 id="2-Kotlin中的接口"><a href="#2-Kotlin中的接口" class="headerlink" title="2.Kotlin中的接口"></a>2.Kotlin中的接口</h2><p>众所周知，Java8引入了一个新特性：接口方法支持默认实现，接下来看看Kotlin 如何声明一个接口</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">interface Behavior &#123;</span><br><span class="line">    val id: Int</span><br><span class="line">    fun eat()</span><br><span class="line">    fun test()&#123;</span><br><span class="line">        println(&quot;test&quot;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>将上面Kotlin声明的接口转换为Java代码，提取其中关键的代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">public interface Behavior &#123;</span><br><span class="line">   int getId();</span><br><span class="line"></span><br><span class="line">   void eat();</span><br><span class="line"></span><br><span class="line">   void test();</span><br><span class="line"></span><br><span class="line">   @Metadata(</span><br><span class="line">      mv = &#123;1, 1, 16&#125;,</span><br><span class="line">      bv = &#123;1, 0, 3&#125;,</span><br><span class="line">      k = 3</span><br><span class="line">   )</span><br><span class="line">   public static final class DefaultImpls &#123;</span><br><span class="line">      public static void test(Behavior $this) &#123;</span><br><span class="line">         String var1 = &quot;test&quot;;</span><br><span class="line">         boolean var2 = false;</span><br><span class="line">         System.out.println(var1);</span><br><span class="line">      &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+<p>如上，Kotlin可以定义带有方法实现的接口，还支持抽象属性（上面的id），同时kotlin是基于Java6的，看反编译后的Java代码，Kotlin编译器是通过一个静态内部类DefaultImpls来实现test的。</p>
+<p>上述代码若直接对id进行默认赋值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">interface Behavior &#123;</span><br><span class="line">    val id: Int = 10 //idea会提示：Property initializers are not allowed in interfaces</span><br><span class="line">    fun eat()</span><br><span class="line">    fun test()&#123;</span><br><span class="line">        println(&quot;test&quot;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Kotlin 提供了另外一种方式实现了这种效果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">val id: Int</span><br><span class="line">     get() = 10</span><br></pre></td></tr></table></figure>
+
+<p>反编译后Java代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">public interface Behavior &#123;</span><br><span class="line">   int getId();</span><br><span class="line"></span><br><span class="line">   void eat();</span><br><span class="line"></span><br><span class="line">   void test();</span><br><span class="line"></span><br><span class="line">   void test2();</span><br><span class="line"></span><br><span class="line">   @Metadata(</span><br><span class="line">      mv = &#123;1, 1, 16&#125;,</span><br><span class="line">      bv = &#123;1, 0, 3&#125;,</span><br><span class="line">      k = 3</span><br><span class="line">   )</span><br><span class="line">   public static final class DefaultImpls &#123;</span><br><span class="line">      public static int getId(Behavior $this) &#123;</span><br><span class="line">         return 10;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      public static void test(Behavior $this) &#123;</span><br><span class="line">         String var1 = &quot;test&quot;;</span><br><span class="line">         boolean var2 = false;</span><br><span class="line">         System.out.println(var1);</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      public static void test2(Behavior $this) &#123;</span><br><span class="line">         String var1 = &quot;test2&quot;;</span><br><span class="line">         boolean var2 = false;</span><br><span class="line">         System.out.println(var1);</span><br><span class="line">      &#125;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Kotlin接口中的属性背后其实是用方法来实现的，所以说如果我们要为变量赋值常量，那么就需要编译器原生就支持方法默认实现。但Kotlin是基于Java6的，当时并不支持这种特性，所以我们并不能像Java那样给一个接口的属性直接赋值一个常量。</p>
+<h2 id="3-Kotlin中的构造函数"><a href="#3-Kotlin中的构造函数" class="headerlink" title="3.Kotlin中的构造函数"></a>3.Kotlin中的构造函数</h2><p>需要注意的是Kotlin中并没有我们熟悉的new关键字，你可以直接声明一个类的对象：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">val user = User()</span><br></pre></td></tr></table></figure>
+
+<p>现实中，你很可能因为需要传入不同的参数组合，而在类中创建多个构造方法，在Java中这是利用构造方法重载来实现的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">public class User &#123;</span><br><span class="line">    private String name;</span><br><span class="line">    private int age;</span><br><span class="line">    private String email;</span><br><span class="line"></span><br><span class="line">    public User(String name, int age, String email) &#123;</span><br><span class="line">        this.name = name;</span><br><span class="line">        this.age = age;</span><br><span class="line">        this.email = email;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public User(String name, int age) &#123;</span><br><span class="line">        this.name = name;</span><br><span class="line">        this.age = age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public User(String email) &#123;</span><br><span class="line">        this.email = email;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>我们发现Java中的这种方式存在两个缺点：<br>❑ 如果要支持任意参数组合来创建对象，那么需要实现的构造方法将会非常多。<br>❑ 每个构造方法中的代码会存在冗余，如前两个构造方法都对age和name进行了相同的赋值操作。</p>
+<p>在Kotlin中是通过引入新的构造语法来解决这些问题。从而避免不必要的方法重载。用Kotlin改下如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">class User(</span><br><span class="line">    val name: String = &quot;simon&quot;,</span><br><span class="line">    val age: Int = 18,</span><br><span class="line">    val email: String = &quot;simon@mail&quot;</span><br><span class="line">) &#123;</span><br><span class="line">    //这里可以省略&#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>用一行代码就可以实现与java等价的效果。需要注意的是，由于参数默认值的存在，我们在创建一个类对象时，最好指定参数的名称，否则必须按照实际参数的顺序进行赋值。</p>
+<p>我们在类中可以用val或者var来声明构造方法的参数。这一方面代表了参数的引用可变性，另一方面它也使得我们在构造类的语法上得到了简化。事实上，构造方法的参数名前当然可以没有val和var，然而带上它们之后就等价于在类内部声明了一个同名的属性，我们可以用this来进行调用：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">class User(</span><br><span class="line">    name: String = &quot;simon&quot;,</span><br><span class="line">    age: Int = 18,</span><br><span class="line">    email: String = &quot;simon@mail&quot;</span><br><span class="line">) &#123;</span><br><span class="line">    val name: String</span><br><span class="line">    val age: Int</span><br><span class="line">    val email: String</span><br><span class="line">    init &#123;</span><br><span class="line">        this.name = name</span><br><span class="line">        this.age = age</span><br><span class="line">        this.email = email</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>通过反编译成java代码可以看出两者是等价的。</p>
+<h2 id="3-Kotlin中的init语句快"><a href="#3-Kotlin中的init语句快" class="headerlink" title="3.Kotlin中的init语句快"></a>3.Kotlin中的init语句快</h2><p>Kotlin引入了一种叫作init语句块的语法，它属于上述构造方法的一部分，两者在表现形式上却是分离的。类的构造方法在类的外部，它只能对参数进行赋值。如果我们需要在初始化时进行其他的额外操作，那么我们就可以使用init语句块来执行。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">class User(</span><br><span class="line">    name: String = &quot;simon&quot;,</span><br><span class="line">    age: Int = 18,</span><br><span class="line">    email: String = &quot;simon@mail&quot;</span><br><span class="line">) &#123;</span><br><span class="line">    val name: String</span><br><span class="line">    val age: Int</span><br><span class="line">    val email: String</span><br><span class="line">    init &#123;</span><br><span class="line">        println(&quot;do some other things&quot;)</span><br><span class="line">        this.name = name</span><br><span class="line">        this.age = age</span><br><span class="line">        this.email = email</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">fun main()&#123;</span><br><span class="line">    val user = User(&quot;test&quot;, 20, &quot;hi&quot;)</span><br><span class="line">    println(user.name)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">输出：</span><br><span class="line">do some other things</span><br><span class="line">test</span><br></pre></td></tr></table></figure>
+
+<p>事实上，我们的构造方法还可以拥有多个init，它们会在对象被创建时按照类中从上到下的顺序先后执行，通过该特性我们可以多个init语句块进行职能分离，这在复杂的业务开发（如Android）中会显得特别有用。</p>
+<h2 id="4-Kotlin中的延时初始化"><a href="#4-Kotlin中的延时初始化" class="headerlink" title="4.Kotlin中的延时初始化"></a>4.Kotlin中的延时初始化</h2><p>延时初始化即我们可以不用在类对象初始化的时候就必须有值。在Kotlin中，我们主要使用lateinit和by lazy这两种语法来实现延迟初始化的效果。</p>
+<p>如果这是一个用val声明的变量，我们可以用by lazy来修饰：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">class User(</span><br><span class="line">    val name: String = &quot;simon&quot;,</span><br><span class="line">    val age: Int = 18,</span><br><span class="line">    val email: String = &quot;simon@mail&quot;</span><br><span class="line">) &#123;</span><br><span class="line">    val category: String by lazy &#123;</span><br><span class="line">        if (age &gt;= 18) &quot;adult&quot; else &quot;boy&quot;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>总结by lazy语法的特点如下：<br>❑ 该变量必须是引用不可变的，而不能通过var来声明。<br>❑ 在被首次调用时，才会进行赋值操作。一旦被赋值，后续它将不能被更改。</p>
+<p>lazy的背后是接受一个lambda并返回一个Lazy <t>实例的函数，第一次访问该属性时，会执行lazy对应的Lambda表达式并记录结果，后续访问该属性时只是返回记录的结果。</t></p>
+<p>另外系统会给lazy属性默认加上同步锁，有如下几种模式：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">    //默认添加 、线程安全，同一时刻只允许一个线程对lazy属性进行初始化</span><br><span class="line">    val category: String by lazy(LazyThreadSafetyMode.SYNCHRONIZED) &#123;</span><br><span class="line">        if (age &gt;= 18) &quot;adult&quot; else &quot;boy&quot;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    //并行模式，可以并行执行，没有线程安全问题</span><br><span class="line">    val category: String by lazy(LazyThreadSafetyMode.PUBLICATION) &#123;</span><br><span class="line">        if (age &gt;= 18) &quot;adult&quot; else &quot;boy&quot;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    //不做任何线程保证也不会有任何线程开销</span><br><span class="line">    val category: String by lazy(LazyThreadSafetyMode.NONE) &#123;</span><br><span class="line">        if (age &gt;= 18) &quot;adult&quot; else &quot;boy&quot;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">源码：</span><br><span class="line"></span><br><span class="line">Lazy.kt</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * Specifies how a [Lazy] instance synchronizes initialization among multiple threads.</span><br><span class="line"> */</span><br><span class="line">public enum class LazyThreadSafetyMode &#123;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * Locks are used to ensure that only a single thread can initialize the [Lazy] instance.</span><br><span class="line">     */</span><br><span class="line">    SYNCHRONIZED,</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * Initializer function can be called several times on concurrent access to uninitialized [Lazy] instance value,</span><br><span class="line">     * but only the first returned value will be used as the value of [Lazy] instance.</span><br><span class="line">     */</span><br><span class="line">    PUBLICATION,</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * No locks are used to synchronize an access to the [Lazy] instance value; if the instance is accessed from multiple threads, its behavior is undefined.</span><br><span class="line">     *</span><br><span class="line">     * This mode should not be used unless the [Lazy] instance is guaranteed never to be initialized from more than one thread.</span><br><span class="line">     */</span><br><span class="line">    NONE,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">LazyJVM.kt:</span><br><span class="line"></span><br><span class="line">public actual fun &lt;T&gt; lazy(mode: LazyThreadSafetyMode, initializer: () -&gt; T): Lazy&lt;T&gt; =</span><br><span class="line">    when (mode) &#123;</span><br><span class="line">        LazyThreadSafetyMode.SYNCHRONIZED -&gt; SynchronizedLazyImpl(initializer)</span><br><span class="line">        LazyThreadSafetyMode.PUBLICATION -&gt; SafePublicationLazyImpl(initializer)</span><br><span class="line">        LazyThreadSafetyMode.NONE -&gt; UnsafeLazyImpl(initializer)</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>与lazy不同，lateinit主要用于var声明的变量，然而它不能用于基本数据类型，如Int、Long等，我们需要用Integer这种包装类作为替代.</p>
+<p>总而言之，Kotlin并不主张用Java中的构造方法重载，来解决多个构造参数组合调用的问题。取而代之的方案是利用构造参数默认值及用val、var来声明构造参数的语法，以更简洁地构造一个类对象。</p>
+<h2 id="4-Kotlin中类的默认修饰符：final"><a href="#4-Kotlin中类的默认修饰符：final" class="headerlink" title="4.Kotlin中类的默认修饰符：final"></a>4.Kotlin中类的默认修饰符：final</h2><p>首先，我们来说明两个Kotlin相比Java不一样的语法特性：<br>❑ Kotlin中没有采用Java中的extends和implements关键词，而是使用“:”来代替类的继承和接口实现；<br>❑ 由于Kotlin中类和方法默认是不可被继承或重写的，所以必须加上open修饰符。</p>
+<p>由于没有仔细思考，设计了错误的继承关系，会导致导致一些问题。子类应该尽量避免重写父类的非抽象方法，因为一旦父类变更方法，子类的方法调用很可能会出错，而且重写父类非抽象方法违背了面向对象设计原则中的“里氏替换原则”。</p>
+<p>什么是里氏替换原则？<br>对里氏替换原则通俗的理解是：子类可以扩展父类的功能，但不能改变父类原有的功能。<br>它包含以下4个设计原则：<br>❑ 子类可以实现父类的抽象方法，但不能覆盖父类的非抽象方法；<br>❑ 子类可以增加自己特有的方法；<br>❑ 当子类的方法实现父类的方法时，方法的前置条件（即方法的形参）要比父类方法的输入参数更宽松；<br>❑ 当子类的方法实现父类的抽象方法时，方法的后置条件（即方法的返回值）要比父类更严格。<br>然而，实际业务开发中我们常常很容易违背里氏替换原则，导致设计中出问题的概率大大增加。其根本原因，就是我们一开始并没有仔细思考一个类的继承关系。所以《Effective Java》也提出了一个原则：“要么为继承做好设计并且提供文档，否则就禁止这样做”。  </p>
+<p>所以Kotlin站在前人肩膀上，吸取了它们的教训，认为类默认开放继承并不是一个好的选择。所以在Kotlin中的类或方法默认是不允许被继承或重写的。除非你主动加可以继承的修饰符，那便是添加open修饰符。  </p>
+<p>除了限制类修饰符之外，还有一种修饰符就是可见性修饰符。下面我们就来看看Kotlin中的修饰符与Java中的差异。</p>
+<p>修饰符 | 含义 | 与Java比较<br>—|—|—|—|—|—<br> open| 允许被继承和重写| 相当于Java类与方法的默认情况<br> abstrat| 抽象类或抽象方法|与Java一致<br> final|不允许被继承或重写（默认情况）|与Java主动指定final的效果一致<br> public|Kotlin中默认修饰符，全局可见|与Java中public效果相同<br> protected|受保护修饰类，类及子类可见|含义一致，但作用域除了类和子类外，包内也可见<br> private|私有修饰符，类内修饰只有本类可见，类外修饰文件内可见|私有修饰符，只有类内可见<br> internal|模块内可见<br> default||java 默认修饰符 包内可访问</p>
+<p> 注意：Kotlin默认没有采用包内可见的作用域，而是使用了模块内可见，用internal修饰符来表示作用域。<br> 那么到底什么算是模块呢？以下几种情况可以算作一个模块：<br> ❑ 一个Eclipse项目<br> ❑ 一个Intellij IDEA项目<br> ❑ 一个Maven项目❑ 一个Grandle项目<br> ❑ 一组由一次Ant任务执行编译的代码<br> 总的来说，一个模块可以看作一起编译的Kotlin文件组成的集合。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/kotlin/" rel="tag"># kotlin</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/10/01/Kotlind读书笔记(1)/" rel="prev" title="Kotlin读书笔记-基础语法">
+                Kotlin读书笔记-基础语法 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="Simon">
+            
+              <p class="site-author-name" itemprop="name">Simon</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">分类</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Kotlin面向对象"><span class="nav-number">1.</span> <span class="nav-text">Kotlin面向对象</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Kotlin中的类"><span class="nav-number">1.1.</span> <span class="nav-text">1.Kotlin中的类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Kotlin中的接口"><span class="nav-number">1.2.</span> <span class="nav-text">2.Kotlin中的接口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Kotlin中的构造函数"><span class="nav-number">1.3.</span> <span class="nav-text">3.Kotlin中的构造函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Kotlin中的init语句快"><span class="nav-number">1.4.</span> <span class="nav-text">3.Kotlin中的init语句快</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-Kotlin中的延时初始化"><span class="nav-number">1.5.</span> <span class="nav-text">4.Kotlin中的延时初始化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-Kotlin中类的默认修饰符：final"><span class="nav-number">1.6.</span> <span class="nav-text">4.Kotlin中类的默认修饰符：final</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Simon</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">4.9k</span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
