@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="Simon&#39;s Blog">
 <meta property="og:description" content="Kotlin面向对象1.Kotlin中的类对象是由状态和行为组成的，我们可以根据他们描述一个事物。我们通过Kotlin定义一个User类 12345678910111213141516171819class User &amp;#123;    var name: String = &amp;quot;simon&amp;quot;    var surname: String = &amp;quot;&amp;quot;">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-02-26T10:41:53.018Z">
+<meta property="og:updated_time" content="2020-02-27T02:13:55.622Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Kotlin读书笔记-面向对象">
 <meta name="twitter:description" content="Kotlin面向对象1.Kotlin中的类对象是由状态和行为组成的，我们可以根据他们描述一个事物。我们通过Kotlin定义一个User类 12345678910111213141516171819class User &amp;#123;    var name: String = &amp;quot;simon&amp;quot;    var surname: String = &amp;quot;&amp;quot;">
@@ -450,7 +450,55 @@
 <p>什么是里氏替换原则？<br>对里氏替换原则通俗的理解是：子类可以扩展父类的功能，但不能改变父类原有的功能。<br>它包含以下4个设计原则：<br>❑ 子类可以实现父类的抽象方法，但不能覆盖父类的非抽象方法；<br>❑ 子类可以增加自己特有的方法；<br>❑ 当子类的方法实现父类的方法时，方法的前置条件（即方法的形参）要比父类方法的输入参数更宽松；<br>❑ 当子类的方法实现父类的抽象方法时，方法的后置条件（即方法的返回值）要比父类更严格。<br>然而，实际业务开发中我们常常很容易违背里氏替换原则，导致设计中出问题的概率大大增加。其根本原因，就是我们一开始并没有仔细思考一个类的继承关系。所以《Effective Java》也提出了一个原则：“要么为继承做好设计并且提供文档，否则就禁止这样做”。  </p>
 <p>所以Kotlin站在前人肩膀上，吸取了它们的教训，认为类默认开放继承并不是一个好的选择。所以在Kotlin中的类或方法默认是不允许被继承或重写的。除非你主动加可以继承的修饰符，那便是添加open修饰符。  </p>
 <p>除了限制类修饰符之外，还有一种修饰符就是可见性修饰符。下面我们就来看看Kotlin中的修饰符与Java中的差异。</p>
-<p>修饰符 | 含义 | 与Java比较<br>—|—|—|—|—|—<br> open| 允许被继承和重写| 相当于Java类与方法的默认情况<br> abstrat| 抽象类或抽象方法|与Java一致<br> final|不允许被继承或重写（默认情况）|与Java主动指定final的效果一致<br> public|Kotlin中默认修饰符，全局可见|与Java中public效果相同<br> protected|受保护修饰类，类及子类可见|含义一致，但作用域除了类和子类外，包内也可见<br> private|私有修饰符，类内修饰只有本类可见，类外修饰文件内可见|私有修饰符，只有类内可见<br> internal|模块内可见<br> default||java 默认修饰符 包内可访问</p>
+<table>
+<thead>
+<tr>
+<th>修饰符</th>
+<th>含义</th>
+<th>与Java比较</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>open</td>
+<td>允许被继承和重写</td>
+<td>相当于Java类与方法的默认情况</td>
+</tr>
+<tr>
+<td>abstrat</td>
+<td>抽象类或抽象方法</td>
+<td>与Java一致</td>
+</tr>
+<tr>
+<td>final</td>
+<td>不允许被继承或重写（默认情况）</td>
+<td>与Java主动指定final的效果一致</td>
+</tr>
+<tr>
+<td>public</td>
+<td>Kotlin中默认修饰符，全局可见</td>
+<td>与Java中public效果相同</td>
+</tr>
+<tr>
+<td>protected</td>
+<td>受保护修饰类，类及子类可见</td>
+<td>含义一致，但作用域除了类和子类外，包内也可见</td>
+</tr>
+<tr>
+<td>private</td>
+<td>私有修饰符，类内修饰只有本类可见，类外修饰文件内可见</td>
+<td>私有修饰符，只有类内可见</td>
+</tr>
+<tr>
+<td>internal</td>
+<td>模块内可见</td>
+<td></td>
+</tr>
+<tr>
+<td>default</td>
+<td></td>
+<td>java 默认修饰符 包内可访问</td>
+</tr>
+</tbody></table>
 <p> 注意：Kotlin默认没有采用包内可见的作用域，而是使用了模块内可见，用internal修饰符来表示作用域。<br> 那么到底什么算是模块呢？以下几种情况可以算作一个模块：<br> ❑ 一个Eclipse项目<br> ❑ 一个Intellij IDEA项目<br> ❑ 一个Maven项目❑ 一个Grandle项目<br> ❑ 一组由一次Ant任务执行编译的代码<br> 总的来说，一个模块可以看作一起编译的Kotlin文件组成的集合。</p>
 
       
