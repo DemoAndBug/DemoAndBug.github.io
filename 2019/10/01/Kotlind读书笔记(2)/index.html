@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="Simon&#39;s Blog">
 <meta property="og:description" content="Kotlin面向对象1.Kotlin中的类对象是由状态和行为组成的，我们可以根据他们描述一个事物。我们通过Kotlin定义一个User类 12345678910111213141516171819class User &amp;#123;    var name: String = &amp;quot;simon&amp;quot;    var surname: String = &amp;quot;&amp;quot;">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-02-27T02:23:05.460Z">
+<meta property="og:updated_time" content="2020-02-27T07:19:22.625Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Kotlin读书笔记-面向对象">
 <meta name="twitter:description" content="Kotlin面向对象1.Kotlin中的类对象是由状态和行为组成的，我们可以根据他们描述一个事物。我们通过Kotlin定义一个User类 12345678910111213141516171819class User &amp;#123;    var name: String = &amp;quot;simon&amp;quot;    var surname: String = &amp;quot;&amp;quot;">
@@ -354,7 +354,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  3.3k
+                  3.7k
                 </span>
               
 
@@ -370,7 +370,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  13 分钟
+                  15 分钟
                 </span>
               
             </div>
@@ -500,6 +500,10 @@
 </tr>
 </tbody></table>
 <p> 注意：Kotlin默认没有采用包内可见的作用域，而是使用了模块内可见，用internal修饰符来表示作用域。<br> 那么到底什么算是模块呢？以下几种情况可以算作一个模块：<br> ❑ 一个Eclipse项目<br> ❑ 一个Intellij IDEA项目<br> ❑ 一个Maven项目<br> ❑ 一个Grandle项目<br> ❑ 一组由一次Ant任务执行编译的代码<br> 总的来说，一个模块可以看作一起编译的Kotlin文件组成的集合。</p>
+<h2 id="5-Kotlin中内部类和嵌套类"><a href="#5-Kotlin中内部类和嵌套类" class="headerlink" title="5.Kotlin中内部类和嵌套类"></a>5.Kotlin中内部类和嵌套类</h2><p>众所周知，在Java中，我们通过在内部类的语法上增加一个static关键词，把它变成一个嵌套类。然而，Kotlin则是相反的思路，默认是一个嵌套类，必须加上inner关键字才是一个内部类，也就是说可以把静态的内部类看成嵌套类。内部类和嵌套类有明显的差别，具体体现在：内部类包含着对其外部类实例的引用，在内部类中我们可以使用外部类中的属性，而嵌套类不包含对其外部类实例的引用，所以它无法调用其外部类的属性。  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line">class Mule &#123;</span><br><span class="line"></span><br><span class="line">    val name: String = &quot;mule class &quot;</span><br><span class="line">    fun runFast() &#123;</span><br><span class="line">        HorseC().runFast()</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    fun doLongTimeThing() &#123;</span><br><span class="line">        DonkeyC().doLongTimeThing()</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private inner class HorseC : Horse()</span><br><span class="line"></span><br><span class="line">    private inner class DonkeyC : Donkey()</span><br><span class="line"></span><br><span class="line">    class TestClass &#123;</span><br><span class="line">        fun printName() &#123;</span><br><span class="line">            //不能调用参数Mule 的参数 name</span><br><span class="line">            print(&quot;test&quot;)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">反编译后的Java代码如下：</span><br><span class="line"></span><br><span class="line">public final class Mule &#123;</span><br><span class="line">   @NotNull</span><br><span class="line">   private final String name = &quot;put  class &quot;;</span><br><span class="line"></span><br><span class="line">   @NotNull</span><br><span class="line">   public final String getName() &#123;</span><br><span class="line">      return this.name;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   public final void runFast() &#123;</span><br><span class="line">      (new Mule.HorseC()).runFast();</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   public final void doLongTimeThing() &#123;</span><br><span class="line">      (new Mule.DonkeyC()).doLongTimeThing();</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   private final class HorseC extends Horse &#123;</span><br><span class="line">      public HorseC() &#123;</span><br><span class="line">      &#125;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">   private final class DonkeyC extends Donkey &#123;</span><br><span class="line">      public DonkeyC() &#123;</span><br><span class="line">      &#125;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   public static final class TestClass &#123;</span><br><span class="line">      public final void printName() &#123;</span><br><span class="line">         String var1 = &quot;test&quot;;</span><br><span class="line">         boolean var2 = false;</span><br><span class="line">         System.out.print(var1);</span><br><span class="line">      &#125;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>1）我们可以在一个类内部定义多个内部类，每个内部类的实例都有自己的独立状态，它们与外部对象的信息相互独立；<br>2）通过让内部类HorseC、DonkeyC分别继承Horse和Donkey这两个外部类，我们就可以在Mule类中定义它们的实例对象，从而获得了Horse和Donkey两者不同的状态和行为；<br>3）我们可以利用private修饰内部类，使得其他类都不能访问内部类，具有非常良好的封装性。  </p>
 
       
     </div>
@@ -668,7 +672,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Kotlin面向对象"><span class="nav-number">1.</span> <span class="nav-text">Kotlin面向对象</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Kotlin中的类"><span class="nav-number">1.1.</span> <span class="nav-text">1.Kotlin中的类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Kotlin中的接口"><span class="nav-number">1.2.</span> <span class="nav-text">2.Kotlin中的接口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Kotlin中的构造函数"><span class="nav-number">1.3.</span> <span class="nav-text">3.Kotlin中的构造函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Kotlin中的init语句快"><span class="nav-number">1.4.</span> <span class="nav-text">3.Kotlin中的init语句快</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-Kotlin中的延时初始化"><span class="nav-number">1.5.</span> <span class="nav-text">4.Kotlin中的延时初始化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-Kotlin中类的默认修饰符：final"><span class="nav-number">1.6.</span> <span class="nav-text">4.Kotlin中类的默认修饰符：final</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Kotlin面向对象"><span class="nav-number">1.</span> <span class="nav-text">Kotlin面向对象</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Kotlin中的类"><span class="nav-number">1.1.</span> <span class="nav-text">1.Kotlin中的类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Kotlin中的接口"><span class="nav-number">1.2.</span> <span class="nav-text">2.Kotlin中的接口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Kotlin中的构造函数"><span class="nav-number">1.3.</span> <span class="nav-text">3.Kotlin中的构造函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Kotlin中的init语句快"><span class="nav-number">1.4.</span> <span class="nav-text">3.Kotlin中的init语句快</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-Kotlin中的延时初始化"><span class="nav-number">1.5.</span> <span class="nav-text">4.Kotlin中的延时初始化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-Kotlin中类的默认修饰符：final"><span class="nav-number">1.6.</span> <span class="nav-text">4.Kotlin中类的默认修饰符：final</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-Kotlin中内部类和嵌套类"><span class="nav-number">1.7.</span> <span class="nav-text">5.Kotlin中内部类和嵌套类</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -688,7 +692,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
@@ -702,7 +706,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">4.9k</span>
+    <span title="Site words total count">5.4k</span>
   
 </div>
 
